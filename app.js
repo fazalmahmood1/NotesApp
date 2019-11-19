@@ -1,7 +1,7 @@
 const fs = require('fs');
 const _ = require('lodash');
 const yargs = require('yargs');
-
+const chalk = require('chalk');
 const notes = require('./notes.js')
 
 const titleOption = {
@@ -36,13 +36,13 @@ switch(command){
         if(notes.isAlphaNumeric(argv.title)){
             let note = notes.addNote(argv.title, argv.body)
             if(note){
-                console.log('Note created');
+                console.log(chalk.green('Note created'));
                 notes.logNote(note)
             }else{
-                console.log('Note title taken')
+                console.log(chalk.red('Note title taken'))
             }
         }else{
-            console.log(notes.alphaNumericError);
+            console.log(chalk.red(notes.alphaNumericError));
         }
         break;
     case "list":
@@ -53,25 +53,25 @@ switch(command){
         if(notes.isAlphaNumeric(argv.title)){
             let noteRead = notes.getNote(argv.title)
             if(noteRead){
-                console.log('Note found!')
+                console.log(chalk.green('Note found!'))
                 notes.logNote(noteRead);
             }else{
-                console.log('Note not found!')
+                console.log(chalk.red('Note not found!'))
             }
         }else{
-            console.log(notes.alphaNumericError);
+            console.log(chalk.red(notes.alphaNumericError));
         }
         break;
     case "remove":
         if(notes.isAlphaNumeric(argv.title)){
             let noteRemoved = notes.removeNote(argv.title)
-            let message = noteRemoved ? 'Note was removed':'Note not found';
+            let message = noteRemoved ? chalk.green('Note was removed'):chalk.red('Note not found');
             console.log(message)
         }else{
-            console.log(notes.alphaNumericError);
+            console.log(chalk.red(notes.alphaNumericError));
         }
         break;
     default:
-        console.log('Command not recognized')        
+        console.log(chalk.red('Command not recognized'))        
 }
 

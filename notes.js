@@ -1,5 +1,6 @@
 const fs = require('fs');
 const validator = require('validator');
+const chalk = require('chalk');
 
 const alphaNumericError = "Title must be alpha numeric";
 
@@ -58,9 +59,9 @@ let removeNote = title => {
 };
 
 let logNote = (note) => {
-    console.log('---')
-    console.log(`Title: ${note.title}`)
-    console.log(`Body: ${note.body}`)
+    console.log(chalk.cyan('-------------------'))
+    console.log(`${chalk.magentaBright('Title: ')} ${note.title}`)
+    console.log(`${chalk.magentaBright('Body: ')} ${note.body}`)
 };
 
 let isAlphaNumeric = (title) => {
