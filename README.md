@@ -39,12 +39,18 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 ### lodash installation
   After installing node, this project will need lodash too, so just run the following command.
 
-      $ npm i --save lodash
+    $ npm i --save lodash
       
 ### Yargs installation
  Yargs helps you build interactive command line tools, by parsing arguments and generating an elegant user interface
 
-      $ npm i --save yargs
+    $ npm i --save yargs
+
+### Validator installation
+ A library of string validators and sanitizers
+
+    $ npm i --save validator
+    
 ---
 
 ## Install

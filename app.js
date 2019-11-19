@@ -33,12 +33,16 @@ let command = process.argv[2];
 
 switch(command){
     case "add":
-        let note = notes.addNote(argv.title, argv.body)
-        if(note){
-            console.log('Note created');
-            notes.logNote(note)
+        if(notes.isAlphaNumeric(argv.title)){
+            let note = notes.addNote(argv.title, argv.body)
+            if(note){
+                console.log('Note created');
+                notes.logNote(note)
+            }else{
+                console.log('Note title taken')
+            }
         }else{
-            console.log('Note title taken')
+            console.log(notes.alphaNumericError);
         }
         break;
     case "list":
@@ -46,18 +50,26 @@ switch(command){
         allNotes.forEach((note) => notes.logNote(note))
         break;
     case "read":
-        let noteRead = notes.getNote(argv.title)
-        if(noteRead){
-            console.log('Note found!')
-            notes.logNote(noteRead);
+        if(notes.isAlphaNumeric(argv.title)){
+            let noteRead = notes.getNote(argv.title)
+            if(noteRead){
+                console.log('Note found!')
+                notes.logNote(noteRead);
+            }else{
+                console.log('Note not found!')
+            }
         }else{
-            console.log('Note not found!')
+            console.log(notes.alphaNumericError);
         }
         break;
     case "remove":
-        let noteRemoved = notes.removeNote(argv.title)
-        let message = noteRemoved ? 'Note was removed':'Note not found';
-        console.log(message)
+        if(notes.isAlphaNumeric(argv.title)){
+            let noteRemoved = notes.removeNote(argv.title)
+            let message = noteRemoved ? 'Note was removed':'Note not found';
+            console.log(message)
+        }else{
+            console.log(notes.alphaNumericError);
+        }
         break;
     default:
         console.log('Command not recognized')        

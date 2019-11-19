@@ -1,5 +1,7 @@
-console.log('Starting nodes.js')
 const fs = require('fs');
+const validator = require('validator');
+
+const alphaNumericError = "Title must be alpha numeric";
 
 // Get All notes from the file
 let fetchNotes = () => {
@@ -61,10 +63,15 @@ let logNote = (note) => {
     console.log(`Body: ${note.body}`)
 };
 
+let isAlphaNumeric = (title) => {
+    return validator.isAlphanumeric(title);
+}
 module.exports = {
     addNote,
     getAll,
     getNote,
     removeNote,
-    logNote
+    logNote,
+    isAlphaNumeric,
+    alphaNumericError
 }
